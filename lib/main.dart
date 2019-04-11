@@ -16,12 +16,14 @@ class TodoList extends StatefulWidget {
 
 class TodoListState extends State<TodoList> {
   List<String> _todoItems = [];
+  List<String> _todobio = [];
 
   // This will be called each time the + button is pressed
-  void _addTodoItem(String task) {
+  void _addTodoItem(String task,String task2) {
     // Only add the task if the user actually entered something
     if (task.length > 0) {
       setState(() => _todoItems.add(task));
+      setState(()=> _todobio.add(task2));
     }
   }
 
@@ -60,8 +62,8 @@ class TodoListState extends State<TodoList> {
         // MaterialPageRoute will automatically animate the screen entry, as well
         // as adding a back button to close it
         new MaterialPageRoute(builder: (context) {
-          String val1="";
-          String val2="";
+      String val1 = "";
+      String val2 = "";
       return new Scaffold(
           appBar: new AppBar(title: new Text('Add a new task')),
           body: Column(
@@ -69,20 +71,27 @@ class TodoListState extends State<TodoList> {
               new TextField(
                 autofocus: true,
                 onChanged: (text) {
-                  val1 = text; 
+                  val1 = text;
                 },
                 decoration: new InputDecoration(
                     hintText: 'Enter something to do...',
                     contentPadding: const EdgeInsets.all(16.0)),
               ),
               TextField(
-                onChanged: (text){
+                onChanged: (text) {
                   val2 = text;
                 },
                 decoration: InputDecoration(
                     hintText: 'Enter the despricption',
                     contentPadding: EdgeInsets.all(16)),
-              ), RaisedButton(onPressed:(){ _addTodoItem(val1);Navigator.pop(context);},child: Text('i guess'),)
+              ),
+              RaisedButton(
+                onPressed: () {
+                  _addTodoItem(val1,val2);
+                  Navigator.pop(context);
+                },
+                child: Text('i guess'),
+              )
             ],
           ));
     }));
