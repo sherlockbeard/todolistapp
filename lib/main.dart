@@ -16,7 +16,6 @@ class TodoList extends StatefulWidget {
 
 class TodoListState extends State<TodoList> {
   List<String> _todoItems = [];
-  List<String> _todobio = [];
 
   // This will be called each time the + button is pressed
   void _addTodoItem(String task) {
