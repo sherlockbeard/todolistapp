@@ -19,11 +19,10 @@ class TodoListState extends State<TodoList> {
   List<String> _todobio = [];
 
   // This will be called each time the + button is pressed
-  void _addTodoItem(String task,String task2) {
+  void _addTodoItem(String task) {
     // Only add the task if the user actually entered something
     if (task.length > 0) {
       setState(() => _todoItems.add(task));
-      setState(()=> _todobio.add(task2));
     }
   }
 
@@ -63,7 +62,6 @@ class TodoListState extends State<TodoList> {
         // as adding a back button to close it
         new MaterialPageRoute(builder: (context) {
       String val1 = "";
-      String val2 = "";
       return new Scaffold(
           appBar: new AppBar(title: new Text('Add a new task')),
           body: Column(
@@ -77,17 +75,9 @@ class TodoListState extends State<TodoList> {
                     hintText: 'Enter something to do...',
                     contentPadding: const EdgeInsets.all(16.0)),
               ),
-              TextField(
-                onChanged: (text) {
-                  val2 = text;
-                },
-                decoration: InputDecoration(
-                    hintText: 'Enter the despricption',
-                    contentPadding: EdgeInsets.all(16)),
-              ),
               RaisedButton(
                 onPressed: () {
-                  _addTodoItem(val1,val2);
+                  _addTodoItem(val1);
                   Navigator.pop(context);
                 },
                 child: Text('i guess'),
