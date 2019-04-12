@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new TodoApp());
+void main() => runApp( TodoApp());
 
 class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(title: 'Todo List', home: new TodoList());
+    return  MaterialApp(title: 'Todo List', home:  TodoList());
   }
 }
 
 class TodoList extends StatefulWidget {
   @override
-  createState() => new TodoListState();
+  createState() =>  TodoListState();
 }
 
 class TodoListState extends State<TodoList> {
@@ -27,7 +27,7 @@ class TodoListState extends State<TodoList> {
 
   // Build the whole list of todo items
   Widget _buildTodoList() {
-    return new ListView.builder(
+    return  ListView.builder(
       itemBuilder: (context, index) {
         if (index < _todoItems.length) {
           return _buildTodoItem(_todoItems[index], index);
@@ -37,20 +37,20 @@ class TodoListState extends State<TodoList> {
   }
 
   Widget _buildTodoItem(String todoText, int index) {
-    return new ListTile(
-        title: new Text(todoText), onTap: () => _promptRemoveTodoItem(index));
+    return  ListTile(
+        title:  Text(todoText), onTap: () => _promptRemoveTodoItem(index));
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text('Todo List')),
+    return  Scaffold(
+      appBar:  AppBar(title:  Text('Todo List')),
       body: _buildTodoList(),
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton:  FloatingActionButton(
           onPressed:
               _pushAddTodoScreen, // pressing this button now opens the new screen
           tooltip: 'Add task',
-          child: new Icon(Icons.add)),
+          child:  Icon(Icons.add)),
     );
   }
 
@@ -59,18 +59,18 @@ class TodoListState extends State<TodoList> {
     Navigator.of(context).push(
         // MaterialPageRoute will automatically animate the screen entry, as well
         // as adding a back button to close it
-        new MaterialPageRoute(builder: (context) {
+         MaterialPageRoute(builder: (context) {
       String val1 = "";
-      return new Scaffold(
-          appBar: new AppBar(title: new Text('Add a new task')),
+      return  Scaffold(
+          appBar:  AppBar(title:  Text('Add a new task')),
           body: Column(
             children: <Widget>[
-              new TextField(
+               TextField(
                 autofocus: true,
                 onChanged: (text) {
                   val1 = text;
                 },
-                decoration: new InputDecoration(
+                decoration:  InputDecoration(
                     hintText: 'Enter something to do...',
                     contentPadding: const EdgeInsets.all(16.0)),
               ),
@@ -94,14 +94,14 @@ class TodoListState extends State<TodoList> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return new AlertDialog(
-              title: new Text('Mark "${_todoItems[index]}" as done?'),
+          return  AlertDialog(
+              title:  Text('Mark "${_todoItems[index]}" as done?'),
               actions: <Widget>[
-                new FlatButton(
-                    child: new Text('CANCEL'),
+                 FlatButton(
+                    child:  Text('CANCEL'),
                     onPressed: () => Navigator.of(context).pop()),
-                new FlatButton(
-                    child: new Text('MARK AS DONE'),
+                 FlatButton(
+                    child:  Text('MARK AS DONE'),
                     onPressed: () {
                       _removeTodoItem(index);
                       Navigator.of(context).pop();
